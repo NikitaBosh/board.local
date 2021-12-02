@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Task;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskRequest;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -39,7 +40,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         Task::create($request->all());
 
@@ -82,7 +83,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         $task = Task::findOrFail($id);
         $task->update($request->except('user_id'));
